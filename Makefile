@@ -1,12 +1,10 @@
 build:
 	./docker/build.sh
 
-.PHONY: vendor
-vendor:
-	docker run --rm -e DEPCACHEDIR=/go/src/adjoe.io/.depcache -v ${CURDIR}:/go/src/adjoe.io adjoe-test/golang-dev dep ensure -v
+tests:
+	@docker run --rm -v $(shell go env GOPATH):/go -v ${CURDIR}:/go/src/adjoe.io adjoe-test/golang-dev go test ./...
 up:
 	@make build
-	@make vendor
 	docker-compose -f docker-compose.yml up -d
 logs:
 	docker-compose logs -f

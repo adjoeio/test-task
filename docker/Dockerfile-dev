@@ -7,3 +7,4 @@ RUN go get github.com/codegangsta/gin && \
 
 # Set the local PORT environment variable inside the container
 ENV PORT 3000
+ENV GO111MODULE on
